@@ -50,6 +50,7 @@ class proftpd::config(
   $tls_protocol       = $proftpd::params::tls_protocol,
   $tls_rsacertfile    = $proftpd::params::tls_rsacertfile,
   $tls_rsacertkey     = $proftpd::params::tls_rsacertkey,
+  $tls_cacertfile     = $proftpd::params::tls_cacertfile,
   $tls_options        = $proftpd::params::tls_options,
   $tls_verifyclient   = $proftpd::params::tls_verifyclient,
   $tls_required       = $proftpd::params::tls_required,
