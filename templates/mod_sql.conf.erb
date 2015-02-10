@@ -1,5 +1,5 @@
 #
-# Proftpd sample configuration for SQL-based authentication.
+# Proftpd configuration for SQL-based authentication.
 #
 # (This is not to be used if you prefer a PAM-based SQL authentication)
 #
@@ -11,23 +11,23 @@
 # or comment out the unused module in /etc/proftpd/modules.conf.
 # Use 'mysql' or 'postgres' as possible values.
 #
-SQLBackend	<%= sql_backend %>
+SQLBackend              <%= sql_backend %>
+SQLEngine               <%= sql_engine %>
+SQLAuthenticate         on
 #
-SQLEngine <%= sql_engine %>
-SQLAuthenticate on
-#
-# Use both a crypted or plaintext password 
-SQLAuthTypes Crypt Plaintext
-#
-# Use a backend-crypted or a crypted password
-SQLAuthTypes Backend Crypt 
+# Use a crypted, backend-crypted or plaintext password 
+SQLAuthTypes            <%= sql_authtypes %>
 #
 # Connection 
-SQLConnectInfo <%= sql_dbname %>@<%= sql_host %> <%= sql_username %> <%= sql_password %>
+SQLConnectInfo          <%= sql_dbname %>@<%= sql_host %> <%= sql_username %> <%= sql_password %>
+SQLUserWhereClause      "<%= sql_whereclause %>"
 #
 # Describes both users/groups tables
-#
-SQLUserInfo users userid passwd uid gid homedir shell
-SQLGroupInfo groups groupname gid members
-#
+SQLUserInfo             <%= sql_userinfo %>
+SQLGroupInfo            <%= sql_groupinfo %>
+SQLAuthenticate         <%= sql_authenticate %>
+RequireValidShell       <%= sql_requirevalidshell %>
+
+SQLDefaultUID           <%= sql_defaultuid %>
+SQLDefaultGID           <%= sql_defaultgid %>
 </IfModule>
